@@ -34,4 +34,4 @@ I want this to be pocketable device, that will be able to mainly write notes. I'
 - [ ] Rotary encoder ui navigation
 
 ## Concept visualisation
-![image]("./Images/Concepts/Esp32 based pda.jpg")
+![image]("./Images/Concepts/Esp32-based-pda.jpg")
