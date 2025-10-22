@@ -33,5 +33,9 @@ I want this to be pocketable device, that will be able to mainly write notes. I'
 - [ ] Other features i will think of along the way
 - [ ] Rotary encoder ui navigation
 
+## Schematic
+![image](./Schematic/esp32-based-pda-schematic.png)
 ## Concept visualisation
 ![image](./Images/Concepts/Esp32-based-pda-2.jpg)
+
+
