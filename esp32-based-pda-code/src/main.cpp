@@ -21,12 +21,14 @@ struct Eink_Display
   int BUSY_PIN;
   int RES_PIN; // eink pins
   int DC_PIN;
+  int CLK_PIN;
+  int MOSI_PIN;
 };
-Eink_Display eInk = {10, 14, 46, 13};
+Eink_Display eInk = {39, 14, 40, 37, 36, 35};
 
 // 4.2'' EPD Module
-GxEPD2_BW<GxEPD2_420_GDEY042T81, GxEPD2_420_GDEY042T81::HEIGHT> display(GxEPD2_420_GDEY042T81(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN));    // 400x300, SSD1683
-GxEPD2_3C<GxEPD2_420c_GDEY042Z98, GxEPD2_420c_GDEY042Z98::HEIGHT> display(GxEPD2_420c_GDEY042Z98(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN)); // 400x300, SSD1683
+GxEPD2_BW<GxEPD2_420_GDEY042T81, GxEPD2_420_GDEY042T81::HEIGHT> display(GxEPD2_420_GDEY042T81(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN)); // 400x300, SSD1683
+// GxEPD2_3C<GxEPD2_420c_GDEY042Z98, GxEPD2_420c_GDEY042Z98::HEIGHT> display(GxEPD2_420c_GDEY042Z98(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN)); // 400x300, SSD1683
 
 struct SD_Slot
 {
@@ -35,7 +37,7 @@ struct SD_Slot
   int MISO_PIN; // sdslot pins
   int SCK_PIN;
 };
-SD_Slot sdSlot = {39, 35, 37, 36};
+SD_Slot sdSlot = {10, 11, 13, 12};
 
 #define led1 (1) // led pin
 
