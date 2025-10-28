@@ -32,9 +32,12 @@ I want this to be pocketable device, that will be able to mainly write notes. I'
 - [ ] Status leds
 - [ ] Other features i will think of along the way
 - [ ] Rotary encoder ui navigation
+## 3d printing
 
+I've created 3d printed design for 18650 battery so that battery wont roll inside. It's a simple slide in and then 2 holes for M3 screws (not threaded).
+![image](./Images/3d_files_images/battery-holder.png)
 ## Schematic
-![image](./Schematic/esp32-based-pda-schematic.png)
+![image](./Images/Schematic/esp32-based-pda-schematic.png)
 ## Concept visualisation
 ![image](./Images/Concepts/Esp32-based-pda-2.jpg)
 
