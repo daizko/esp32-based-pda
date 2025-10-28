@@ -55,9 +55,9 @@ struct gpio_expander1
   int C4;
   int INTA;
   int INTB;
-  int RES;
+  int RESPIN;
 };
-
+gpio_expander1 gpio_exp_1 = {.RESPIN = 40};
 struct gpio_expander2
 {
   int R1;
@@ -70,9 +70,9 @@ struct gpio_expander2
   int C4;
   int INTA;
   int INTB;
-  int RES;
+  int RESPIN;
 };
-
+gpio_expander2 gpio_exp_2 = {.RESPIN = 41};
 struct rotaryEncoder
 {
   int A;
