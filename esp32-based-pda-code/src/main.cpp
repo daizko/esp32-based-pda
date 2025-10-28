@@ -43,36 +43,16 @@ SD_Slot sdSlot = {10, 11, 13, 12};
 
 #define SDA (8) // i2c pins
 #define SCL (9)
-struct gpio_expander1
+struct gpio_expander
 {
-  int R1;
-  int R2;
-  int R3;
-  int R4;
-  int C1; // gpio expander1 pins
-  int C2;
-  int C3;
-  int C4;
+  uint8_t adress;
   int INTA;
   int INTB;
   int RESPIN;
 };
-gpio_expander1 gpio_exp_1 = {.RESPIN = 40};
-struct gpio_expander2
-{
-  int R1;
-  int R2;
-  int R3;
-  int R4; // gpioexpander 1 pins
-  int C1;
-  int C2;
-  int C3;
-  int C4;
-  int INTA;
-  int INTB;
-  int RESPIN;
-};
-gpio_expander2 gpio_exp_2 = {.RESPIN = 41};
+gpio_expander gpio_exp_1 = {0x20, 15, 16, 40}; // i need to shift to 7bit bc manufacter uses 8bit
+gpio_expander gpio_exp_2 = {0x21, 17, 18, 41}; // not sure about what adress does changing a0 to high make
+
 struct rotaryEncoder
 {
   int A;
