@@ -41,6 +41,38 @@ SD_Slot sdSlot = {10, 11, 13, 12};
 
 #define led1 (1) // led pin
 
+#define SDA (8) // i2c pins
+#define SCL (9)
+struct gpio_expander1
+{
+  int R1;
+  int R2;
+  int R3;
+  int R4;
+  int C1; // gpio expander1 pins
+  int C2;
+  int C3;
+  int C4;
+  int INTA;
+  int INTB;
+  int RES;
+};
+
+struct gpio_expander2
+{
+  int R1;
+  int R2;
+  int R3;
+  int R4; // gpioexpander 1 pins
+  int C1;
+  int C2;
+  int C3;
+  int C4;
+  int INTA;
+  int INTB;
+  int RES;
+};
+
 struct rotaryEncoder
 {
   int A;
