@@ -59,7 +59,7 @@ struct rotaryEncoder
   int A;
   int B;
 };
-rotaryEncoder rotE = {48, 47};
+rotaryEncoder rotE = {4, 5};
 
 SPIClass *fspi = NULL; // pointers to spi objects
 SPIClass *hspi = NULL;
@@ -92,6 +92,9 @@ void setup()
     return;
   }
   uint8_t cardType = SD.cardType();
+
+  pinMode(rotE.A, INPUT_PULLUP);
+  pinMode(rotE.B, INPUT_PULLUP); // rotary encoder pullups
 }
 
 void loop()
