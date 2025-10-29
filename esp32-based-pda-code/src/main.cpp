@@ -9,6 +9,7 @@
 #include <Wire.h>
 #include <SPI.h>
 
+#include <FS.h> //handles files
 #include <SD.h> //Micor sd card library
 
 #include <GxEPD2_BW.h>
@@ -28,7 +29,7 @@ Eink_Display eInk = {39, 14, 40, 37, 36, 35};
 
 // 4.2'' EPD Module
 GxEPD2_BW<GxEPD2_420_GDEY042T81, GxEPD2_420_GDEY042T81::HEIGHT> display(GxEPD2_420_GDEY042T81(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN)); // 400x300, SSD1683
-// GxEPD2_3C<GxEPD2_420c_GDEY042Z98, GxEPD2_420c_GDEY042Z98::HEIGHT> display(GxEPD2_420c_GDEY042Z98(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN)); // 400x300, SSD1683
+// GxEPD2_3C<GxEPD2_420c_GDEY042Z98, GxEPD2_420c_GDEY042Z98::HEIGHT> display(GxEPD2_420c_GDEY042Z98(/*CS=5*/ eInk.CS_PIN, /*DC=*/eInk.DC_PIN, /*RES=*/eInk.RES_PIN, /*BUSY=*/eInk.BUSY_PIN)); // 400x300, SSD1683 color display
 
 struct SD_Slot
 {
@@ -50,8 +51,8 @@ struct gpio_expander
   int INTB;
   int RESPIN;
 };
-gpio_expander gpio_exp_1 = {0x20, 15, 16, 40}; // i need to shift to 7bit bc manufacter uses 8bit
-gpio_expander gpio_exp_2 = {0x21, 17, 18, 41}; // not sure about what adress does changing a0 to high make
+gpio_expander gpio_exp_1 = {0x40 >> 1, 15, 16, 40}; // i need to shift to 7bit bc manufacter uses 8bit
+gpio_expander gpio_exp_2 = {0x41 >> 1, 17, 18, 41}; // not sure about what adress does changing a0 to high make
 
 struct rotaryEncoder
 {
@@ -60,13 +61,37 @@ struct rotaryEncoder
 };
 rotaryEncoder rotE = {48, 47};
 
+SPIClass *fspi = NULL; // pointers to spi objects
+SPIClass *hspi = NULL;
+
 // put function declarations here:
-int myFunction(int, int);
 
 void setup()
 {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+
+  pinMode(led1, OUTPUT); // led set as output
+
+  Wire.begin(SDA, SCL); // i2c inicialisation
+
+  fspi = new SPIClass(FSPI); // fspi bc vpsi is older name for it
+  hspi = new SPIClass(HSPI);
+  fspi->begin(sdSlot.SCK_PIN, sdSlot.MISO_PIN, sdSlot.MOSI_PIN, sdSlot.CS_PIN);
+  hspi->begin(eInk.CLK_PIN, -1, eInk.MOSI_PIN, eInk.CS_PIN);
+
+  pinMode(fspi->pinSS(), OUTPUT);    // VSPI SS
+  pinMode(hspi->pinSS(), OUTPUT);    // HSPI SS
+  digitalWrite(fspi->pinSS(), HIGH); // Start with SS high
+  digitalWrite(hspi->pinSS(), HIGH);
+
+  display.init(115200, true, 50, false);
+
+  if (!SD.begin(sdSlot.CS_PIN, *fspi))
+  {
+    Serial.println("Card Mount Failed");
+    return;
+  }
+  uint8_t cardType = SD.cardType();
 }
 
 void loop()
@@ -75,7 +100,3 @@ void loop()
 }
 
 // put function definitions here:
-int myFunction(int x, int y)
-{
-  return x + y;
-}
