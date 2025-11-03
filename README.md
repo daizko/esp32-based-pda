@@ -1,6 +1,6 @@
-# esp32-based-pda
+# PROJECT GLYPH.
 
-esp32 based pda device with eink and oled display
+PROJECT GLYPH. is ESP32-S3 based pocket pda device with eink and oled display and bunch of other cool stuff
 
 ## Overview
 
@@ -22,10 +22,13 @@ I want this to be pocketable device, that will be able to mainly write notes. I'
 - TP4056 charging module
 - 3.7V battery
 - Rotary encoder
-- Vibration motor
+- Vibration motor with mosfter
 - Piezo buzzer (passive)
 - LEDs
-- Boost converter for boosting battery
+- Boost converter for boosting battery voltage to 5V
+- Bunch of capacitors for voltage smoothing
+- Bunch of diodes for ghosting prevention on keyboard
+- Bunch of resistors
 
 ## Features i need to implement
 
