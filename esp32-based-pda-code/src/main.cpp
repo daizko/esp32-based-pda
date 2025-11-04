@@ -1,35 +1,17 @@
 #include <Arduino.h>
 
-#include <Adafruit_MCP23X17.h> //gpio expander library
-
-struct gpio_expander
-{
-  uint8_t adress;
-  int INTA;
-  int INTB;
-  int RESPIN;
-};
-gpio_expander gpio_exp_1 = {0x40 >> 1, 15, 16, 40}; // i need to shift to 7bit bc manufacter uses 8bit
-gpio_expander gpio_exp_2 = {0x41 >> 1, 17, 18, 41}; // not sure about what adress does changing a0 to high make
-
-struct one_pin_devices
-{
-  int PIN;
-};
-one_pin_devices led1 = {1}; // case led
-one_pin_devices led2 = {6}; // error led
-one_pin_devices buzzer = {7};
-one_pin_devices vib_motor = {21};
-one_pin_devices battery_voltage = {3};
-
-// put function declarations here:
+#include "drivers/buzzer/buzzer.h"
+#include "drivers/eink/eink.h"
+#include "drivers/gpio_expander/gpio_expander.h"
+#include "drivers/leds/leds.h"
+#include "drivers/oled/oled.h"
+#include "drivers/rotary_encoder/rotary_encoder.h"
+#include "drivers/sd_card/sd_card.h"
+#include "drivers/vib_motor/vib_motor.h"
 
 void setup()
 {
   Serial.begin(115200);
-
-  pinMode(led1.PIN, OUTPUT); // led set as output
-  pinMode(led2.PIN, OUTPUT);
 }
 
 void loop()

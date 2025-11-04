@@ -1,5 +1,4 @@
-#ifndef ROT_H
-#define ROT_H
+
 
 #include "drivers/rotary_encoder/rotary_encoder.h"
 struct rotaryEncoder
@@ -18,5 +17,3 @@ namespace rotary_encoder
     }
 
 };
-
-#endif

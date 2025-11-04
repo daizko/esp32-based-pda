@@ -10,6 +10,8 @@
 
 namespace oled
 {
+    const int SDA_PIN = 8;
+    const int SCL_PIN = 9;
     void begin();
 };
 #endif
