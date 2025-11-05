@@ -4,7 +4,7 @@
 #include <Arduino.h>
 namespace buzzer
 {
-    const int pin;
+    const int pin = 7;
     void begin();
 }
 #endif

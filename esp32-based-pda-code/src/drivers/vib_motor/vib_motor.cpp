@@ -2,7 +2,6 @@
 
 namespace vib_motor
 {
-    const int pin = 21;
 
     void begin()
     {

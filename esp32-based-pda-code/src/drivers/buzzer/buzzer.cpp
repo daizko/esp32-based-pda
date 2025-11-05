@@ -2,7 +2,7 @@
 
 namespace buzzer
 {
-    const int pin = 7;
+    
 
     void begin()
     {
