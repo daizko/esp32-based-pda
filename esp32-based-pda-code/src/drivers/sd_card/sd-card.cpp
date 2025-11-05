@@ -1,5 +1,4 @@
 #include "drivers/sd_card/sd_card.h"
-#include "drivers/leds/leds.h"
 
 struct SD_Slot
 {
