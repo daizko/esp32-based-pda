@@ -1,0 +1,1 @@
+varibakes in .h files must be extern bc it wont compile
