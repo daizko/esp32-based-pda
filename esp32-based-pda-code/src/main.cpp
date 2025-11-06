@@ -17,7 +17,8 @@ void setup()
 
 void loop()
 {
-  leds::led1_blink(500);
+
+  leds::led1_blink();
   // put your main code here, to run repeatedly:
 }
 

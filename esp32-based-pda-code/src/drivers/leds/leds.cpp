@@ -10,6 +10,8 @@ namespace leds
     static unsigned long int currentMillis;
     static bool active1 = false;
     static int remaining_blinks1;
+    static int length;
+
     void begin()
     {
 
@@ -17,7 +19,7 @@ namespace leds
         pinMode(led2, OUTPUT);
         currentMillis = 0;
     }
-    void start_blink_led1(int times)
+    void start_blink_led1(int lenght, int times)
     {
         remaining_blinks1 = times * 2; // bc on and off is one time
         if (times <= 0)
@@ -27,7 +29,7 @@ namespace leds
         currentMillis = millis();
         active1 = true;
     }
-    void led1_blink(int length)
+    void led1_blink()
     {
         if (!active1)
             return;

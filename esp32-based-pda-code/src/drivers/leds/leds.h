@@ -10,8 +10,8 @@ namespace leds
     extern const int led1;
 
     void begin();
-    void led1_blink(int speed);
-    void start_blink_led1(int times);
+    void led1_blink();
+    void start_blink_led1(int lenght, int times);
 };
 
 #endif
