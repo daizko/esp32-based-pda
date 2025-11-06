@@ -20,7 +20,7 @@ namespace leds
 
     static int length1;
     static int lenght2;
-    
+
     void begin()
     {
 
@@ -38,6 +38,18 @@ namespace leds
         currentMillis1 = millis();
         active1 = true;
     }
+
+    void start_blink_led2(int lenght2, int times)
+    {
+        remaining_blinks2 = times * 2; // bc on and off is one time
+        if (times <= 0)
+            return; // returns if minus number
+        ledState2 = false;
+        digitalWrite(led2, LOW);
+        currentMillis2 = millis();
+        active2 = true;
+    }
+
     void led1_blink()
     {
         if (!active1)
@@ -54,6 +66,26 @@ namespace leds
             digitalWrite(led1, ledState1 ? HIGH : LOW);
             currentMillis1 = millis();
             remaining_blinks1--;
+            return;
+        }
+    }
+
+    void led2_blink()
+    {
+        if (!active2)
+            return;
+        if (remaining_blinks2 <= 0)
+        {
+            active2 = false;
+            digitalWrite(led2, LOW);
+            return;
+        }
+        if (millis() - currentMillis2 >= length1)
+        {
+            ledState2 = !ledState2;
+            digitalWrite(led2, ledState2 ? HIGH : LOW);
+            currentMillis2 = millis();
+            remaining_blinks2--;
             return;
         }
     }

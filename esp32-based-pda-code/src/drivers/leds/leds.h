@@ -11,7 +11,9 @@ namespace leds
 
     void begin();
     void led1_blink();
-    void start_blink_led1(int lenght, int times);
+    void start_blink_led1(int lenght1, int times);
+    void led2_blink();
+    void start_blink_led2(int lenght2, int times);
 };
 
 #endif
