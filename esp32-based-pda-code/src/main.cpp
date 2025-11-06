@@ -19,6 +19,7 @@ void loop()
 {
 
   leds::led1_blink();
+  leds::led2_blink();
   // put your main code here, to run repeatedly:
 }
 
