@@ -1,4 +1,5 @@
 
+
 #include "drivers/eink/eink.h"
 
 struct Eink_Display
@@ -30,7 +31,7 @@ namespace Eink
 
         display.init(115200);
         display.setRotation(1);              // 1 - probably landscape
-        display.setFont(&FreeMonoBold9pt7b); // display parametres
-        display.setTextColor(GxEPD_BLACK);
+        display.setFont(&FreeMonoBold9pt7b); // default font size, you have to call function setFont with different pt sizes before printing heading and so on
+        display.setTextColor(GxEPD_BLACK);   // display parametres
     }
 };
