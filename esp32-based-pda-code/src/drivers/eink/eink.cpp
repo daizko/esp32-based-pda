@@ -27,5 +27,10 @@ namespace Eink
         display.init(115200, true, 50, false);
         pinMode(hspi->pinSS(), OUTPUT); // HSPI SS
         digitalWrite(hspi->pinSS(), HIGH);
+
+        display.init(115200);
+        display.setRotation(1);              // 1 - probably landscape
+        display.setFont(&FreeMonoBold9pt7b); // display parametres
+        display.setTextColor(GxEPD_BLACK);
     }
 };
